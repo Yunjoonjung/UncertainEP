@@ -3,24 +3,26 @@ import numpy as np
 from scipy.stats import norm 
 from scipy.stats import uniform 
 from scipy.stats import triang
+from scipy.stats import lognorm
 
 from pyDOE import lhs
 
-import matplotlib.pyplot as plt 
+from eppy import modeleditor
+from eppy.modeleditor import IDF
+from eppy.results import readhtml 
+import pprint
+
 import seaborn as sns
-
-
+import matplotlib.pyplot as plt 
 
 class Uncertain_EP(object):
 
-    def __init__(self, IDF_FileName, epw_FileName, IDD_FileNameDraw_SA_Result=True, Draw_UA_Result=True):
+    def __init__(self, IDF_FileName, epw_FileName, IDD_FileName, IDD_FileNameDraw_SA_Result=True, Draw_UA_Result=True):
         self.epw_FileName = epw_FileName
         self.IDF_FileName = IDF_FileName
         self.IDD_FileName = IDD_FileName
-
         
     def EP_iteration(self, SA_quantified_matrix): # Method for EnergyPlus iteration
-
 
         lighting1 = idf1.idfobjects['LIGHTS'][0]
         
@@ -30,13 +32,16 @@ class Uncertain_EP(object):
             IDF.setiddname(self.IDD_FileName)
             idf1 = IDF(self.IDF_FileName)
 
+            # Assign quantified values in the idf instace
             lightins.Watts_per_Zone_Floor_Area = X[0]
 
-            
 
+            # Run
+            idf1.save()
             idf = IDF(file_name, epwfile)
-            idf.run(readvars=False)
-
+            idf.run(readvars=True)
+            
+            
             # Collect the result
             fname = "eplustbl.htm" # the html file you want to read
             filehandle = open(fname, 'r').read() # get a file handle to the html file
@@ -49,12 +54,12 @@ class Uncertain_EP(object):
             total_site_energy = firstitem[1][1][1]
             output[i] = total_site_energy
 
-            ##a = sns.distplot(output[:])
-#           #plt.show() 
+        a = sns.distplot(output[:])
+        plt.show() 
+
         return output
 
     
-
     def SA(self, number_of_uncertain_parameters, number_of_samples=1000):
         self.number_of_uncertain_parameters = number_of_uncertain_parameters
         self.number_of_samples = number_of_samples
@@ -81,11 +86,11 @@ class Uncertain_EP(object):
         
         for i in range(0,8760):
             # Scenario (weather) in EPW file
-            self.distribution_repository[i,0] = norm(loc=float(EPW_data_repository[i+][])`, scale=3).ppf(design_lhs[:,0]) # Temperature
-            self.distribution_repository[i,1] = norm(loc=float(EPW_data_repository[i+][]), scale=3).ppf(design_lhs[:,1]) # Solar
-            self.distribution_repository[i,2] = norm(loc=float(EPW_data_repository[i+][]), scale=3).ppf(design_lhs[:,2]) #
-            self.distribution_repository[i,3] = norm(loc=float(EPW_data_repository[i+][]), scale=3).ppf(design_lhs[:,3])
-            self.distribution_repository[i,4] = norm(loc=float(EPW_data_repository[i+][]), scale=3).ppf(design_lhs[:,4])
+            self.distribution_repository[i,0] = norm(loc=float(EPW_data_repository[i+8][]), scale=3).ppf(design_lhs[:,0]) # Temperature
+            self.distribution_repository[i,1] = norm(loc=float(EPW_data_repository[i+8][]), scale=3).ppf(design_lhs[:,1]) # Solar
+            self.distribution_repository[i,2] = norm(loc=float(EPW_data_repository[i+8][]), scale=3).ppf(design_lhs[:,2]) #
+            self.distribution_repository[i,3] = norm(loc=float(EPW_data_repository[i+8][]), scale=3).ppf(design_lhs[:,3])
+            self.distribution_repository[i,4] = norm(loc=float(EPW_data_repository[i+8][]), scale=3).ppf(design_lhs[:,4])
             
             # Parameter Uncertainty in EnergyPlus
             self.distribution_repository[:,0] = norm(loc=8, scale=3).ppf(self.design_lhs[:,0])
@@ -109,12 +114,18 @@ class Uncertain_EP(object):
     def UA(self):
         # Conduct uncertainty Analysis
         for i in range(0,self.number_of_samples):
-            # Assgin the uncertain values in thes idf file
+            # Open IDF file
+            IDF.setiddname(self.IDD_FileName)
+            idf1 = IDF(self.IDF_FileName)
+
+            # Assign quantified values in the idf instace
+            lightins.Watts_per_Zone_Floor_Area = X[0]
 
 
-            # Run the idf file
-
-            # 
+            # Run
+            idf1.save()
+            idf = IDF(file_name, epwfile)
+            idf.run(readvars=True)
 
             
         # Visualize the Uncertainty Analysis Results
