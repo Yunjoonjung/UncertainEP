@@ -3,7 +3,6 @@ import numpy as np
 from scipy.stats import norm 
 from scipy.stats import uniform 
 from scipy.stats import triang
-from scipy.stats import lognorm
 
 from pyDOE import lhs
 
@@ -11,6 +10,8 @@ from eppy import modeleditor
 from eppy.modeleditor import IDF
 from eppy.results import readhtml 
 import pprint
+
+import openpyxl
 
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -25,23 +26,33 @@ class Uncertain_EP(object):
         self.IDD_FileNameDraw_SA_Result = IDD_FileNameDraw_SA_Result
         self.Draw_UA_Result = Draw_UA_Result
         
-    def EP_iteration(self, SA_quantified_matrix): # Method for EnergyPlus iteration
-
-        lighting1 = idf1.idfobjects['LIGHTS'][0]
         
-        # Assign the
+    def EP_iteration(self, SA_quantified_matrix): # Method for EnergyPlus iteration
+       
+        # Assign the quantified values into idf and epw
         for i, X in enumerate(SA_quantified_matrix):
-            # Open IDF file
+            # Open .idf file
             IDF.setiddname(self.IDD_FileName)
-            idf1 = IDF(self.IDF_FileName)
+            incetance_idf = IDF(self.IDF_FileName)
 
             # Assign quantified values in the idf instace
-            lightins.Watts_per_Zone_Floor_Area = X[0]
+            if uncertain_input_sheet.cell(row=i+2, column=2).value != "Climate":
+                for j in range(0,uncertain_input_sheet.cell(row=1, column=14).value):
+                    replace_to_EnergyPlus_format = str(uncertain_input_sheet.cell(row=i[0]+2, column=2).value.replace("_", ":"))
+                    obj_num = int(uncertain_input_sheet.cell(row=i[0]+2, column=4).value[3])
+                    name_in_idf_instance = incetance_idf.idfobjects[replace_to_EnergyPlus_format][obj_num-1].uncertain_input_sheet.cell(row=i[0]+2, column=3).value
+
+                    print(name_in_idf_instance)
+                                                                                 
+                    name_in_idf_instance = X[j]
+                    
+            else: # Climate case
+                
 
 
             # Run
-            idf1.save()
-            idf = IDF(file_name, epwfile)
+            incetance_idf.save()
+            idf = IDF(self.IDF_FileName, self.epw_FileName)
             idf.run(readvars=True)
             
             
@@ -58,24 +69,25 @@ class Uncertain_EP(object):
             output[i] = total_site_energy
 
         a = sns.distplot(output[:])
-        plt.show() 
-
+        plt.show()
+        
+        incetance_idf.save() # close idf 
+        uncertain_input.save('Uncertain_EP_Input.xlsx') # close Excel
         return output
 
     
-    def SA(self, number_of_uncertain_parameters, number_of_samples=1000):
-        self.number_of_uncertain_parameters = number_of_uncertain_parameters
+    def SA(self, number_of_samples=10):
         self.number_of_samples = number_of_samples
 
+        # Read the "Uncertain_EP_Input" excel file
+        uncertain_input = openpyxl.load_workbook('Uncertain_EP_Input.xlsx', data_only=False)
+        uncertain_input_sheet = uncertain_input['Input']
+
+        self.number_of_uncertain_parameters = uncertain_input_sheet.cell(row=1, column=14).value
         self.self.distribution_repository = np.zeros((self.number_of_samples,self.number_of_uncertain_parameters))
-        
-        # 1. Define the variables for Morris sensitivity analysis
-        self.energyPlus_input_setup = {'num_vars': self.number_of_uncertain_parameters,
-                                      'names': [ '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-                                                 '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-                                                 '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-                                                 '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',
-                                                 'Temperature', 'Wind Speed' ]}
+
+        print(self.number_of_samples)
+        print(type(self.number_of_samples ))
 
         # Open .epw file
         EPW_data_repository =[]
@@ -88,73 +100,104 @@ class Uncertain_EP(object):
         IDF.setiddname(self.IDD_FileName)
         incetance_idf = IDF(self.IDF_FileName)
         
-                
-        # Uncertainty quantification (both parameter and scenario(epw))
+        # Define the variables for Morris sensitivity analysis
+        self.energyPlus_input_setup = {'num_vars': self.number_of_uncertain_parameters}
+
+        name_repository = []
+        for i in range(0,self.number_of_uncertain_parameters):
+            if uncertain_input_sheet.cell(row=i+2, column=2).value != "Climate":
+                replace_to_EnergyPlus_format = str(uncertain_input_sheet.cell(row=i+2, column=2).value.replace("_", ":"))
+                obj_num = int(uncertain_input_sheet.cell(row=i+2, column=4).value[3])
+                name_in_idf_instance = incetance_idf.idfobjects[replace_to_EnergyPlus_format][obj_num-1].Name
+                sample_string = name_in_idf_instance +"__IN__"+ str(uncertain_input_sheet.cell(row=i+2, column=3).value)
+                name_repository.append(sample_string)
+            else:
+                name_for_climate = uncertain_input_sheet.cell(row=i+2, column=2).value
+                name_repository.append(name_for_climate)
+
+
+        self.energyPlus_input_setup.update('names'=name_repository)
+        
+        # Uncertainty quantification
         design_lhs = lhs(self.number_of_uncertain_parameters, samples=self.number_of_samples)
         
-        for i in range(0,8760):
-            # Parameter Uncertainty in EnergyPlus
-            self.distribution_repository[:,0] = norm(loc=, scale=3).ppf(self.design_lhs[:,0])
-            self.distribution_repository[:,1] = uniform(loc=, scale=15).ppf(self.design_lhs[:,1])
-            self.distribution_repository[:,2] = triang(c=0., loc=5, scale=5).ppf(self.design_lhs[:,2])
-            self.distribution_repository[:,3] = triang(c=0.5, loc=5, scale=5).ppf(self.design_lhs[:,3])
-            self.distribution_repository[:,4] = triang(c=0.5, loc=5, scale=5).ppf(self.design_lhs[:,4])
+        for i in range(i,self.number_of_uncertain_parameters):
+            if uncertain_input_sheet.cell(row=i+2, column=2).value != "Climate":
+                if uncertain_input_sheet.cell(row=i+2, column=5).value == "NormalRelative":
+                    replace_to_EnergyPlus_format = str(uncertain_input_sheet.cell(row=i+2, column=2).value.replace("_", ":"))
+                    obj_num = int(uncertain_input_sheet.cell(row=i+2, column=2).value[3])
+                    value_in_idf_instance = incetance_idf.idfobjects[replace_to_EnergyPlus_format][obj_num-1].str(uncertain_input_sheet.cell(row=i+2, column=3).value)
+                    
+                    self.distribution_repository[:,i] = norm(loc=value_in_idf_instance, scale=uncertain_input_sheet.cell(row=i+2, column=6).value).ppf(design_lhs[:,i])
+                    
+                elif uncertain_input_sheet.cell(row=i+2, column=5).value == "UniformRelative":                
+                    self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
+                    
+                elif uncertain_input_sheet.cell(row=i+2, column=5).value == "TriangleRelative":
+                    self.distribution_repository[:,i] = triang(c=uncertain_input_sheet.cell(row=i+2, column=6).value, loc=uncertain_input_sheet.cell(row=i+2, column=7).value, scale=uncertain_input_sheet.cell(row=i+2, column=8).value).ppf(design_lhs[:,i])
 
-            self.distribution_repository[:,5] = triang(c=0., loc=5, scale=5)..ppf(self.design_lhs[:,5])
-            self.distribution_repository[:,6] = uniform(loc=, scale=15).ppf(self.design_lhs[:,6])
-            self.distribution_repository[:,7] = triang(c=0., loc=5, scale=5).ppf(self.design_lhs[:,7])
-            self.distribution_repository[:,8] = triang(c=0.5, loc=5, scale=5).ppf(self.design_lhs[:,8])
-            self.distribution_repository[:,9] = triang(c=0.5, loc=5, scale=5).ppf(self.design_lhs[:,9])
+            else:
+                if uncertain_input_sheet.cell(row=i+2, column=3).value == "Temperature":
+                    if uncertain_input_sheet.cell(row=i+2, column=5).value == "NormalRelative":
+                        self.distribution_repository[:,i] = norm(loc=      , scale=uncertain_input_sheet.cell(row=i+2, column=6).value).ppf(design_lhs[:,i])
+                    
+                    elif uncertain_input_sheet.cell(row=i+2, column=5).value == "UniformRelative":                
+                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
+                    
+                    elif uncertain_input_sheet.cell(row=i+2, column=5).value == "TriangleRelative":
+                        self.distribution_repository[:,i] = triang(c=uncertain_input_sheet.cell(row=i+2, column=6).value, loc=uncertain_input_sheet.cell(row=i+2, column=7).value, scale=uncertain_input_sheet.cell(row=i+2, column=8).value).ppf(design_lhs[:,i])
 
-            self.distribution_repository[:,10] = norm(loc=, scale=3).ppf(self.design_lhs[:,10])
-            self.distribution_repository[:,11] = uniform(loc=, scale=15).ppf(self.design_lhs[:,11])
-            self.distribution_repository[:,12] = triang(c=0., loc=5, scale=5).ppf(self.design_lhs[:,12])
-            self.distribution_repository[:,13] = triang(c=0.5, loc=5, scale=5).ppf(self.design_lhs[:,13])
-            self.distribution_repository[:,14] = triang(c=0.5, loc=5, scale=5).ppf(self.design_lhs[:,14])
-
-            self.distribution_repository[:,15] = norm(loc=, scale=3).ppf(self.design_lhs[:,15])
-            self.distribution_repository[:,16] = uniform(loc=, scale=15).ppf(self.design_lhs[:,16])
-            self.distribution_repository[:,17] = triang(c=0., loc=5, scale=5).ppf(self.design_lhs[:,17])
-            self.distribution_repository[:,18] = triang(c=0.5, loc=5, scale=5).ppf(self.design_lhs[:,18])
-            self.distribution_repository[:,19] = triang(c=0.5, loc=5, scale=5).ppf(self.design_lhs[:,19])
+                elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Relative_Humidity":
 
 
-            # Scenario (weather) in EPW file
-            self.distribution_repository[i,0] = norm(loc=float(EPW_data_repository[i+8][]), scale=3).ppf(design_lhs[:,0]) # Temperature
-            self.distribution_repository[i,1] = norm(loc=float(EPW_data_repository[i+8][]), scale=3).ppf(design_lhs[:,1]) # Solar
-            self.distribution_repository[i,2] = norm(loc=float(EPW_data_repository[i+8][]), scale=3).ppf(design_lhs[:,2]) #
-            self.distribution_repository[i,3] = norm(loc=float(EPW_data_repository[i+8][]), scale=3).ppf(design_lhs[:,3])
-            self.distribution_repository[i,4] = norm(loc=float(EPW_data_repository[i+8][]), scale=3).ppf(design_lhs[:,4])
+                elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Atmospheric_Pressure":
 
-           
-        incetance_idf.save()
+
+                elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Horizontal_Solar_Radiation":
+
+
+                elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Direct_Solar_Radiation":
+
+
+                elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Diffuse_Solar_Radiation":
+
+                elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Speed":
+
+
+                
+
+         
+        incetance_idf.save() # close idf 
+        uncertain_input.save('Uncertain_EP_Input.xlsx') # close Excel
+
+        
         # Conduct Morris Method
         Y = self.EP_iteration(self.distribution_repository)
         Si = morris.analyze(self.energyPlus_input_setup, self.distribution_repository, Y, conf_level=0.95, print_to_console=True, num_levels=4)
 
-        
+
         # Visualize the morris method result
 
         
-        return
-
-    def UA(self):
-
-        # Conduct uncertainty Analysis
-        for i in range(0,self.number_of_samples):
-            
-            # Open IDF file
-            IDF.setiddname(self.IDD_FileName)
-            idf1 = IDF(self.IDF_FileName)
-
-            # Assign quantified values in the idf instace
-            lightins.Watts_per_Zone_Floor_Area = X[0]
 
 
-            # Run
-            idf1.save()
-            idf = IDF(self.IDF_FileName, self.epw_FileName)
-            idf.run(readvars=True)
+##    def UA(self):
+##
+##        # Conduct uncertainty Analysis
+##        for i in range(0,self.number_of_samples):
+##            
+##            # Open IDF file
+##            IDF.setiddname(self.IDD_FileName)
+##            idf1 = IDF(self.IDF_FileName)
+##
+##            # Assign quantified values in the idf instace
+##            lightins.Watts_per_Zone_Floor_Area = X[0]
+##
+##
+##            # Run
+##            idf1.save()
+##            idf = IDF(self.IDF_FileName, self.epw_FileName)
+##            idf.run(readvars=True)
 
             
         # Visualize the Uncertainty Analysis Results
