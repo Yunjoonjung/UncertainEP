@@ -1,4 +1,4 @@
-Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.07.16 15:17
+Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.08.08 22:02
 ! <Version>, Version ID
  Version, 8.8
 ! <Timesteps per Hour>, #TimeSteps, Minutes per TimeStep {minutes}
@@ -143,43 +143,43 @@ Zone Volume Capacitance Multiplier,   1.000 ,   1.000,   1.000,   1.000
  Cooling Sizing Factor Information, Zone THERMAL ZONE 6 THERMAL ZONE,   1.1500    
 ! <Zone Sizing Information>, Zone Name, Load Type, Calc Des Load {W}, User Des Load {W}, Calc Des Air Flow Rate {m3/s}, User Des Air Flow Rate {m3/s}, Design Day Name, Date/Time of Peak, Temperature at Peak {C}, Humidity Ratio at Peak {kgWater/kgDryAir}, Floor Area {m2}, # Occupants, Calc Outdoor Air Flow Rate {m3/s}, Calc DOAS Heat Addition Rate {W}
  Zone Sizing Information, THERMAL ZONE 1 THERMAL ZONE, Cooling, 46668.87815, 53669.20987, 2.87274, 3.30365, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 09:00:00, 29.17500, 1.44341E-002, 565.63719, 61.34894, 0.57907, 0.00000
- Zone Sizing Information, THERMAL ZONE 1 THERMAL ZONE, Heating, 28679.52157, 35849.40196, 1.04776, 1.30970, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 09:00:00, -6.30000, 2.29643E-003, 565.63719, 61.34894, 0.57907, 0.00000
+ Zone Sizing Information, THERMAL ZONE 1 THERMAL ZONE, Heating, 0.00000, 0.00000, 0.00000, 0.57907, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, , 24.90000, 1.44341E-002, 565.63719, 61.34894, 0.57907, 0.00000
  Zone Sizing Information, THERMAL ZONE 2 THERMAL ZONE, Cooling, 20527.94551, 23607.13733, 1.33269, 1.53260, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 17:48:00, 32.31000, 1.44341E-002, 217.85526, 23.62855, 1.06244, 0.00000
- Zone Sizing Information, THERMAL ZONE 2 THERMAL ZONE, Heating, 12610.02723, 15762.53404, 0.46396, 1.06244, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 09:00:00, -6.30000, 2.29643E-003, 217.85526, 23.62855, 1.06244, 0.00000
+ Zone Sizing Information, THERMAL ZONE 2 THERMAL ZONE, Heating, 0.00000, 0.00000, 0.00000, 1.06244, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, , 24.90000, 1.44341E-002, 217.85526, 23.62855, 1.06244, 0.00000
  Zone Sizing Information, THERMAL ZONE 3 THERMAL ZONE, Cooling, 4509.73576, 5186.19613, 0.29276, 0.53313, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 19:00:00, 30.69500, 1.44341E-002, 130.41957, 14.14529, 0.53313, 0.00000
- Zone Sizing Information, THERMAL ZONE 3 THERMAL ZONE, Heating, 1373.59862, 1716.99828, 4.80274E-002, 0.53313, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 08:03:00, -6.30000, 2.29643E-003, 130.41957, 14.14529, 0.53313, 0.00000
+ Zone Sizing Information, THERMAL ZONE 3 THERMAL ZONE, Heating, 0.00000, 0.00000, 0.00000, 0.53313, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, , 24.90000, 1.44341E-002, 130.41957, 14.14529, 0.53313, 0.00000
  Zone Sizing Information, THERMAL ZONE 4 THERMAL ZONE, Cooling, 3377.21271, 3883.79462, 0.21924, 0.25213, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 18:36:00, 31.26500, 1.44341E-002, 136.91186, 14.84944, 0.10512, 0.00000
- Zone Sizing Information, THERMAL ZONE 4 THERMAL ZONE, Heating, 30.72461, 38.40577, 1.18667E-003, 0.10512, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 08:03:00, -6.30000, 2.29643E-003, 136.91186, 14.84944, 0.10512, 0.00000
+ Zone Sizing Information, THERMAL ZONE 4 THERMAL ZONE, Heating, 0.00000, 0.00000, 0.00000, 0.10512, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, , 24.90000, 1.44341E-002, 136.91186, 14.84944, 0.10512, 0.00000
  Zone Sizing Information, THERMAL ZONE 5 THERMAL ZONE, Cooling, 28456.20613, 32724.63706, 1.84737, 2.12447, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 17:36:00, 32.50000, 1.44341E-002, 337.41201, 36.59566, 0.34542, 0.00000
- Zone Sizing Information, THERMAL ZONE 5 THERMAL ZONE, Heating, 13493.46616, 16866.83270, 0.48548, 0.60685, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 09:00:00, -6.30000, 2.29643E-003, 337.41201, 36.59566, 0.34542, 0.00000
+ Zone Sizing Information, THERMAL ZONE 5 THERMAL ZONE, Heating, 0.00000, 0.00000, 0.00000, 0.34542, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, , 24.90000, 1.44341E-002, 337.41201, 36.59566, 0.34542, 0.00000
  Zone Sizing Information, THERMAL ZONE 6 THERMAL ZONE, Cooling, 27583.77905, 31721.34590, 1.79088, 2.05952, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 16:54:00, 33.14600, 1.44341E-002, 445.92428, 48.36489, 0.34239, 0.00000
- Zone Sizing Information, THERMAL ZONE 6 THERMAL ZONE, Heating, 34170.71974, 42713.39968, 1.27351, 1.59188, ATLANTA HARTSFIELD INTL AP ANN HTG WIND 99.6% CONDNS WS=>MCDB, 1/21 09:00:00, 3.00000, 4.86458E-003, 445.92428, 48.36489, 0.34239, 0.00000
+ Zone Sizing Information, THERMAL ZONE 6 THERMAL ZONE, Heating, 0.00000, 0.00000, 0.00000, 0.34239, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, , 24.90000, 1.44341E-002, 445.92428, 48.36489, 0.34239, 0.00000
 ! <System Sizing Information>, System Name, Load Type, Peak Load Kind, User Design Capacity, Calc Des Air Flow Rate [m3/s], User Des Air Flow Rate [m3/s], Design Day Name, Date/Time of Peak
  System Sizing Information, VAV WITH PFP BOXES AND REHEAT, Cooling, Sensible, 63110.86, 3.30365, 3.30365, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 00:00:00
- System Sizing Information, VAV WITH PFP BOXES AND REHEAT, Heating, Sensible, 35142.25, 1.30970, 1.30970, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 09:00:00
+ System Sizing Information, VAV WITH PFP BOXES AND REHEAT, Heating, Sensible, 0.00, 0.57907, 0.57907, ,  00:00:00
  System Sizing Information, VAV WITH PFP BOXES AND REHEAT 1, Cooling, Sensible, 34882.98, 1.53260, 1.53260, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 00:00:00
- System Sizing Information, VAV WITH PFP BOXES AND REHEAT 1, Heating, Sensible, 28507.51, 1.06244, 1.06244, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 00:03:00
+ System Sizing Information, VAV WITH PFP BOXES AND REHEAT 1, Heating, Sensible, 0.00, 1.06244, 1.06244, ,  00:00:00
  System Sizing Information, VAV WITH PFP BOXES AND REHEAT 2, Cooling, Sensible, 11129.88, 0.53313, 0.53313, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 00:00:00
- System Sizing Information, VAV WITH PFP BOXES AND REHEAT 2, Heating, Sensible, 14304.96, 0.53313, 0.53313, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 00:03:00
+ System Sizing Information, VAV WITH PFP BOXES AND REHEAT 2, Heating, Sensible, 0.00, 0.53313, 0.53313, ,  00:00:00
  System Sizing Information, VAV WITH PFP BOXES AND REHEAT 3, Cooling, Sensible, 5431.32, 0.25213, 0.25213, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 00:00:00
- System Sizing Information, VAV WITH PFP BOXES AND REHEAT 3, Heating, Sensible, 2820.66, 0.10512, 0.10512, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 00:03:00
+ System Sizing Information, VAV WITH PFP BOXES AND REHEAT 3, Heating, Sensible, 0.00, 0.10512, 0.10512, ,  00:00:00
  System Sizing Information, VAV WITH PFP BOXES AND REHEAT 4, Cooling, Sensible, 48825.38, 2.12447, 2.12447, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 00:00:00
- System Sizing Information, VAV WITH PFP BOXES AND REHEAT 4, Heating, Sensible, 16283.13, 0.60685, 0.60685, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 09:00:00
+ System Sizing Information, VAV WITH PFP BOXES AND REHEAT 4, Heating, Sensible, 0.00, 0.34542, 0.34542, ,  00:00:00
  System Sizing Information, VAV WITH PFP BOXES AND REHEAT 5, Cooling, Sensible, 48884.67, 2.05952, 2.05952, ATLANTA HARTSFIELD INTL AP ANN CLG .4% CONDNS DB=>MWB, 7/21 00:00:00
- System Sizing Information, VAV WITH PFP BOXES AND REHEAT 5, Heating, Sensible, 25442.54, 1.59188, 1.59188, ATLANTA HARTSFIELD INTL AP ANN HTG 99.6% CONDNS DB, 1/21 09:00:00
+ System Sizing Information, VAV WITH PFP BOXES AND REHEAT 5, Heating, Sensible, 0.00, 0.34239, 0.34239, ,  00:00:00
 ! <Component Sizing Information>, Component Type, Component Name, Input Field Description, Value
  Component Sizing Information, AirTerminal:SingleDuct:ConstantVolume:Reheat, CV ELEC RHT, Design Size Maximum Air Flow Rate [m3/s], 3.30365
- Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL, Design Size Nominal Capacity [W], 36126.84918
+ Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL, Design Size Nominal Capacity [W], 0.00000
  Component Sizing Information, AirTerminal:SingleDuct:ConstantVolume:Reheat, CV ELEC RHT 1, Design Size Maximum Air Flow Rate [m3/s], 1.53260
- Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL 1, Design Size Nominal Capacity [W], 15997.24681
+ Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL 1, Design Size Nominal Capacity [W], 0.00000
  Component Sizing Information, AirTerminal:SingleDuct:ConstantVolume:Reheat, CV ELEC RHT 2, Design Size Maximum Air Flow Rate [m3/s], 0.53313
- Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL 2, Design Size Nominal Capacity [W], 1655.98174
+ Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL 2, Design Size Nominal Capacity [W], 0.00000
  Component Sizing Information, AirTerminal:SingleDuct:ConstantVolume:Reheat, CV ELEC RHT 3, Design Size Maximum Air Flow Rate [m3/s], 0.25213
- Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL 3, Design Size Nominal Capacity [W], 40.91642
+ Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL 3, Design Size Nominal Capacity [W], 0.00000
  Component Sizing Information, AirTerminal:SingleDuct:ConstantVolume:Reheat, CV ELEC RHT 4, Design Size Maximum Air Flow Rate [m3/s], 2.12447
- Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL 4, Design Size Nominal Capacity [W], 16739.33748
+ Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL 4, Design Size Nominal Capacity [W], 0.00000
  Component Sizing Information, AirTerminal:SingleDuct:ConstantVolume:Reheat, CV ELEC RHT 5, Design Size Maximum Air Flow Rate [m3/s], 2.05952
- Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL 5, Design Size Nominal Capacity [W], 43910.48054
+ Component Sizing Information, Coil:Heating:Electric, CV ELEC RHT COIL 5, Design Size Nominal Capacity [W], 0.00000
  Component Sizing Information, AirLoopHVAC, VAV WITH PFP BOXES AND REHEAT, Design Supply Air Flow Rate [m3/s], 3.30365
  Component Sizing Information, AirLoopHVAC, VAV WITH PFP BOXES AND REHEAT 1, Design Supply Air Flow Rate [m3/s], 1.53260
  Component Sizing Information, AirLoopHVAC, VAV WITH PFP BOXES AND REHEAT 2, Design Supply Air Flow Rate [m3/s], 0.53313
@@ -295,12 +295,12 @@ Environment,RUN PERIOD 1,WeatherFileRunPeriod,01/01,12/31,Sunday,365,Use RunPeri
 Environment:Daylight Saving,No,RunPeriod Object
 Environment:WarmupDays,  6
 ! <Warmup Convergence Information>,Zone Name,Environment Type/Name,Average Warmup Temperature Difference {deltaC},Std Dev Warmup Temperature Difference {deltaC},Max Temperature Pass/Fail Convergence,Min Temperature Pass/Fail Convergence,Average Warmup Load Difference {W},Std Dev Warmup Load Difference {W},Heating Load Pass/Fail Convergence,Cooling Load Pass/Fail Convergence
- Warmup Convergence Information,THERMAL ZONE 1 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.6004534015E-002,8.3907395186E-002,Pass,Pass,6.0992660291E-002,0.2786096741,Pass,Pass
- Warmup Convergence Information,THERMAL ZONE 2 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.6601520636E-002,0.1090238070,Pass,Pass,8.7791165808E-002,0.9973048440,Pass,Pass
- Warmup Convergence Information,THERMAL ZONE 3 THERMAL ZONE,RunPeriod: RUN PERIOD 1,2.3805973703E-002,6.4722265633E-002,Pass,Pass,2.1767488026E-002,0.1212118118,Pass,Pass
- Warmup Convergence Information,THERMAL ZONE 4 THERMAL ZONE,RunPeriod: RUN PERIOD 1,6.3119319525E-003,4.4754006445E-003,Pass,Pass,1.3334077020E-003,1.9303336486E-003,Pass,Pass
- Warmup Convergence Information,THERMAL ZONE 5 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.6334386984E-002,9.1319358855E-002,Pass,Pass,4.8848438410E-002,0.3600907848,Pass,Pass
- Warmup Convergence Information,THERMAL ZONE 6 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.6334321169E-002,0.1207765587,Pass,Pass,0.9268262986,13.7337657810,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 1 THERMAL ZONE,RunPeriod: RUN PERIOD 1,9.2694917318E-003,9.8179461779E-003,Pass,Pass,4.0179681134E-003,4.3192213239E-003,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 2 THERMAL ZONE,RunPeriod: RUN PERIOD 1,2.2431893582E-002,3.6260251673E-002,Pass,Pass,7.8720177682E-003,2.1442666198E-002,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 3 THERMAL ZONE,RunPeriod: RUN PERIOD 1,2.9051237012E-002,4.6512765245E-002,Pass,Pass,1.1840588343E-002,3.5158472217E-002,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 4 THERMAL ZONE,RunPeriod: RUN PERIOD 1,5.6778298616E-003,3.8731005686E-003,Pass,Pass,1.2280361860E-003,1.7961331603E-003,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 5 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.1372923070E-002,2.0593884538E-002,Pass,Pass,7.3974842146E-003,1.6266523450E-002,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 6 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.7544589503E-002,2.7344039873E-002,Pass,Pass,1.1589878559E-002,2.6270007155E-002,Pass,Pass
 ! <ConductionFiniteDifference Numerical Parameters>, Starting Relaxation Factor, Final Relaxation Factor
 ConductionFiniteDifference Numerical Parameters, 1.000, 1.000
 ! <Program Control Information:Threads/Parallel Sims>, Threading Supported,Maximum Number of Threads, Env Set Threads (OMP_NUM_THREADS), EP Env Set Threads (EP_OMP_NUM_THREADS), IDF Set Threads, Number of Threads Used (Interior Radiant Exchange), Number Nominal Surfaces, Number Parallel Sims

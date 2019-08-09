@@ -1,0 +1,29 @@
+Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.08.08 19:44,IDD_Version 8.8.0
+   ** Warning ** Timestep: Requested number (1) cannot be used when Conduction Finite Difference algorithm is selected.
+   **   ~~~   ** ...Timestep is set to 20.
+   ************* Beginning Zone Sizing Calculations
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="{0DDF52CE-8B62-47BB-A700-AC9A9331CE67}", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="{ADD9A700-76C5-42E4-BEC8-60B4684847F7}", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="ALWAYS OFF DISCRETE", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Warning ** ProcessScheduleInput: Schedule:Constant="ALWAYS ON CONTINUOUS", Blank Schedule Type Limits Name input -- will not be validated.
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 60", invalid Outside Boundary Condition="GROUNDSLABPREPROCESSORAVERAGE".
+   **   ~~~   ** The ExpandObjects program has not been run or is not in your EnergyPlus.exe folder.
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 50", invalid Outside Boundary Condition="GROUNDSLABPREPROCESSORAVERAGE".
+   **   ~~~   ** The ExpandObjects program has not been run or is not in your EnergyPlus.exe folder.
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 44", invalid Outside Boundary Condition="GROUNDSLABPREPROCESSORAVERAGE".
+   **   ~~~   ** The ExpandObjects program has not been run or is not in your EnergyPlus.exe folder.
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 32", invalid Outside Boundary Condition="GROUNDSLABPREPROCESSORAVERAGE".
+   **   ~~~   ** The ExpandObjects program has not been run or is not in your EnergyPlus.exe folder.
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 21", invalid Outside Boundary Condition="GROUNDSLABPREPROCESSORAVERAGE".
+   **   ~~~   ** The ExpandObjects program has not been run or is not in your EnergyPlus.exe folder.
+   ** Severe  ** BuildingSurface:Detailed="SURFACE 1", invalid Outside Boundary Condition="GROUNDSLABPREPROCESSORAVERAGE".
+   **   ~~~   ** The ExpandObjects program has not been run or is not in your EnergyPlus.exe folder.
+   **  Fatal  ** GetSurfaceData: Errors discovered, program terminates.
+   ...Summary of Errors that led to program termination:
+   ..... Reference severe error count=6
+   ..... Last severe error=BuildingSurface:Detailed="SURFACE 1", invalid Outside Boundary Condition="GROUNDSLABPREPROCESSORAVERAGE".
+   ************* Warning:  Node connection errors not checked - most system input has not been read (see previous warning).
+   ************* Fatal error -- final processing.  Program exited before simulations began.  See previous error messages.
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 4 Warning; 6 Severe Errors.
+   ************* EnergyPlus Terminated--Fatal Error Detected. 5 Warning; 6 Severe Errors; Elapsed Time=00hr 00min  0.58sec

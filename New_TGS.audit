@@ -11,9 +11,9 @@
   Processing Input Data File -- Complete
   Maximum number of Alpha IDF Args=          50
   Maximum number of Numeric IDF Args=          50
-  Number of IDF "Lines"=        1410
-  Number of Defaulted Fields=         359
-  Number of Fields with Defaults=        1940
+  Number of IDF "Lines"=        1404
+  Number of Defaulted Fields=         353
+  Number of Fields with Defaults=        1883
   Number of Autosized Fields=         120
   Number of Autosizable Fields =         122
   Number of Autocalculated Fields=         226
@@ -130,7 +130,7 @@
  sizeColumnTag=         800
  numColumnTag=         434
  sizeTableEntry=        6400
- numTableEntry=        3313
+ numTableEntry=        3276
  sizeCompSizeTableEntry=         200
  numCompSizeTableEntry=         103
  NumOfRVariable=       13873

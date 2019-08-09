@@ -1,5 +1,5 @@
-Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.07.16 15:17,IDD_Version 8.8.0
-   ** Warning ** Timestep: Requested number (6) cannot be used when Conduction Finite Difference algorithm is selected.
+Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.08.08 22:02,IDD_Version 8.8.0
+   ** Warning ** Timestep: Requested number (1) cannot be used when Conduction Finite Difference algorithm is selected.
    **   ~~~   ** ...Timestep is set to 20.
    ************* Beginning Zone Sizing Calculations
    ** Warning ** ProcessScheduleInput: Schedule:Compact="SCHEDULEOSCSLABAVERAGESURFACETEMP", Schedule Type Limits Name="TEMPERATURE" not found -- will not be validated
@@ -11,6 +11,18 @@ Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.07.16 15:17,IDD_V
    ** Warning ** ProcessScheduleInput: Schedule:Constant="ALWAYS ON CONTINUOUS", Blank Schedule Type Limits Name input -- will not be validated.
    ** Warning ** CheckUsedConstructions: There are 28 nominally unused constructions in input.
    **   ~~~   ** For explicit details on each unused construction, use Output:Diagnostics,DisplayExtraWarnings;
+   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 1 THERMAL ZONE is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 2 THERMAL ZONE is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 3 THERMAL ZONE is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 4 THERMAL ZONE is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 5 THERMAL ZONE is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
+   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 6 THERMAL ZONE is zero.
+   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
    ************* Beginning System Sizing Calculations
    ************* Beginning Plant Sizing Calculations
    ** Warning ** GetElectricEIRChillerInput: Chiller:Electric:EIR="CHILLER - WATER COOLED"
@@ -24,7 +36,7 @@ Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.07.16 15:17,IDD_V
    ************* No node connection errors were found.
    ************* Beginning Simulation
    ** Warning ** ElectricEIRChillerModel - CHILLER:ELECTRIC:EIR "CHILLER - WATER COOLED" - Air Cooled Condenser Inlet Temperature below 0C.
-   **   ~~~   ** ... Outdoor Dry-bulb Condition =  -2.80 C. Occurrence info = RUN PERIOD 1, 01/05 08:04 - 08:05
+   **   ~~~   ** ... Outdoor Dry-bulb Condition =  -2.04 C. Occurrence info = RUN PERIOD 1, 01/05 10:06 - 10:09
    ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= "U.S. AVG  COMMERCIAL-ELECTRICITY" has no energy cost. 
    **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.
    ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= "U.S. AVG  COMMERCIAL-DISTILLATE OIL" has no energy cost. 
@@ -45,10 +57,10 @@ Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.07.16 15:17,IDD_V
    ************* The following recurring error messages occurred.
    *************
    *************  ** Warning ** ElectricEIRChillerModel - CHILLER:ELECTRIC:EIR "CHILLER - WATER COOLED" - Air Cooled Condenser Inlet Temperature below 0C error continues.
-   *************  **   ~~~   **   This error occurred 3665 total times;
+   *************  **   ~~~   **   This error occurred 897 total times;
    *************  **   ~~~   **   during Warmup 0 times;
    *************  **   ~~~   **   during Sizing 0 times.
-   *************  **   ~~~   **   Max=-5.000000E-003 [C]  Min=-11.96 [C]
+   *************  **   ~~~   **   Max=-5.000000E-003 [C]  Min=-5.275 [C]
    *************
    *************
    ************* ===== Final Error Summary =====
@@ -59,5 +71,5 @@ Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.07.16 15:17,IDD_V
    ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
    *************
    ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
-   ************* EnergyPlus Sizing Error Summary. During Sizing: 8 Warning; 0 Severe Errors.
-   ************* EnergyPlus Completed Successfully-- 3681 Warning; 0 Severe Errors; Elapsed Time=00hr 02min 39.81sec
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 14 Warning; 0 Severe Errors.
+   ************* EnergyPlus Completed Successfully-- 919 Warning; 0 Severe Errors; Elapsed Time=00hr 02min 27.38sec
