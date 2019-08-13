@@ -287,7 +287,7 @@ class Uncertain_EP(object):
         return SA_result_compilation 
 
 #-----------------------------------------------------------------------------------------------------------------------------------#
-    def SA(self, number_of_SA_samples=11): # number_of_SA_samples
+    def SA(self, number_of_SA_samples=1000): # number_of_SA_samples
         self.number_of_SA_samples = number_of_SA_samples
         self.uncertain_parameter_repository = []
         value_in_idf = 0 # For saving values in an idf instance
@@ -1061,7 +1061,7 @@ class Uncertain_EP(object):
 
         
 #-----------------------------------------------------------------------------------------------------------------------------------#
-    def UA(self, number_of_UA_samples=100):
+    def UA(self, number_of_UA_samples=1000, only_idf_instances_generation=True):
         self.number_of_UA_samples = number_of_UA_samples
         self.UA_output_result_repository = []
 
@@ -1813,7 +1813,6 @@ class Uncertain_EP(object):
             instance_idf = IDF(self.IDF_FileName)
 
             # Assign the quantified values           
-        
             loop_count = 0
             for i in range(self.number_of_parameter_uncertain_parameters):
                 obj_num = int(uncertain_input_sheet.cell(row=i+2, column=4).value[3]) # int type
@@ -2029,27 +2028,36 @@ class Uncertain_EP(object):
                         instance_idf.idfobjects['Coil_Heating_DX_SingleSpeed'][obj_num].Rated_Air_Flow_Rate = X[loop_count]
                         loop_count += 1
                     
-        
-            # Run EnergyPlus
-            instance_idf.save()
-            idf = IDF(self.IDF_FileName, self.epw_FileName)
-            witheppy.runner.eplaunch_run(idf)
-                
-            # Collect the result
-            fname = self.outputFile # the html file you want to read
-            filehandle = open(fname, 'r').read() # get a file handle to the html file
-            htables = readhtml.titletable(filehandle) # reads the tables with their titles
-            firstitem = htables[0]
-##            print(firstitem)
+            if only_idf_instances_generation == True: # Only Quantification and save-as idf instances
+                print("I am here")
+                print(j)
+                idf_instance_name = "idf_instance_" + str(j+1)
+                print(idf_instance_name)
+                idf_save_path = "./Output/"+idf_instance_name
+                instance_idf.save(idf_save_path)
+               
 
-            pp = pprint.PrettyPrinter()
-            pp.pprint(firstitem)
-            print(firstitem[1][1][1])
-            total_site_energy = firstitem[1][1][1]
-            self.UA_output_result_repository.append(total_site_energy)
+            elif only_idf_instances_generation == False: # Simulate EnergyPlus   
+                # Run EnergyPlus
+                instance_idf.save()
+                idf = IDF(self.IDF_FileName, self.epw_FileName)
+                witheppy.runner.eplaunch_run(idf)
+                    
+                # Collect the result
+                fname = self.outputFile # the html file you want to read
+                filehandle = open(fname, 'r').read() # get a file handle to the html file
+                htables = readhtml.titletable(filehandle) # reads the tables with their titles
+                firstitem = htables[0]
+    ##            print(firstitem)
+
+                pp = pprint.PrettyPrinter()
+                pp.pprint(firstitem)
+                print(firstitem[1][1][1])
+                total_site_energy = firstitem[1][1][1]
+                self.UA_output_result_repository.append(total_site_energy)
         
 
 testing = Uncertain_EP('C:\\Users\\YunJoon Jung\\Dropbox (GaTech)\\Uncertain_EP\\New_TGS.idf', 'C:\\Users\\YunJoon Jung\\Dropbox (GaTech)\\Uncertain_EP\\Atlanta.epw',
                        'C:\\Users\\YunJoon Jung\\Dropbox (GaTech)\\Uncertain_EP\\Energy+.idd', 'New_TGSTable.htm')
-testing.SA()
-##testing.UA()
+##testing.SA(number_of_SA_samples=11)
+testing.UA(number_of_UA_samples=10, only_idf_instances_generation=True)

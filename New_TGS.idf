@@ -7879,7 +7879,7 @@ Material,
     1/2IN Gypsum 1,           !- Name
     Smooth,                   !- Roughness
     0.0127,                   !- Thickness
-    0.20994491722683073,      !- Conductivity
+    0.1468241973350748,       !- Conductivity
     784.9,                    !- Density
     830.000000000001,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -7923,7 +7923,7 @@ Material,
     8IN Concrete HW 1,        !- Name
     MediumRough,              !- Roughness
     0.2033,                   !- Thickness
-    5.014050310848075,        !- Conductivity
+    4.988659173524261,        !- Conductivity
     2242.99999999999,         !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
