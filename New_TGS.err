@@ -1,4 +1,4 @@
-Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.08.09 15:35,IDD_Version 8.8.0
+Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.08.29 16:49,IDD_Version 8.8.0
    ** Warning ** Timestep: Requested number (1) cannot be used when Conduction Finite Difference algorithm is selected.
    **   ~~~   ** ...Timestep is set to 20.
    ************* Beginning Zone Sizing Calculations
@@ -11,18 +11,6 @@ Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.08.09 15:35,IDD_V
    ** Warning ** ProcessScheduleInput: Schedule:Constant="ALWAYS ON CONTINUOUS", Blank Schedule Type Limits Name input -- will not be validated.
    ** Warning ** CheckUsedConstructions: There are 28 nominally unused constructions in input.
    **   ~~~   ** For explicit details on each unused construction, use Output:Diagnostics,DisplayExtraWarnings;
-   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 1 THERMAL ZONE is zero.
-   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
-   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 2 THERMAL ZONE is zero.
-   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
-   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 3 THERMAL ZONE is zero.
-   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
-   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 4 THERMAL ZONE is zero.
-   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
-   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 5 THERMAL ZONE is zero.
-   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
-   ** Warning ** Calculated design heating load for zone=THERMAL ZONE 6 THERMAL ZONE is zero.
-   **   ~~~   ** Check Sizing:Zone and ZoneControl:Thermostat inputs.
    ************* Beginning System Sizing Calculations
    ************* Beginning Plant Sizing Calculations
    ** Warning ** GetElectricEIRChillerInput: Chiller:Electric:EIR="CHILLER - WATER COOLED"
@@ -35,5 +23,29 @@ Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.08.09 15:35,IDD_V
    ************* All Return Air Paths passed integrity testing
    ************* No node connection errors were found.
    ************* Beginning Simulation
-   ** Warning ** ElectricEIRChillerModel - CHILLER:ELECTRIC:EIR "CHILLER - WATER COOLED" - Air Cooled Condenser Inlet Temperature below 0C.
-   **   ~~~   ** ... Outdoor Dry-bulb Condition =  -2.04 C. Occurrence info = RUN PERIOD 1, 01/05 10:06 - 10:09
+   ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= "U.S. AVG  COMMERCIAL-ELECTRICITY" has no energy cost. 
+   **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.
+   ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= "U.S. AVG  COMMERCIAL-DISTILLATE OIL" has no energy cost. 
+   **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.
+   ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= "U.S. AVG  COMMERCIAL-RESIDUAL OIL" has no energy cost. 
+   **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.
+   ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= "U.S. AVG  COMMERCIAL-NATURAL GAS" has no energy cost. 
+   **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.
+   ** Warning ** The resource referenced by LifeCycleCost:UsePriceEscalation= "U.S. AVG  COMMERCIAL-COAL" has no energy cost. 
+   **   ~~~   ** ... It is likely that the wrong resource is used. The resource should match the meter used in Utility:Tariff.
+   ************* Simulation Error Summary *************
+   ************* There are 153 unused schedules in input.
+   ************* There are 153 unused week schedules in input.
+   ************* There are 467 unused day schedules in input.
+   ************* Use Output:Diagnostics,DisplayUnusedSchedules; to see them.
+   *************
+   ************* ===== Final Error Summary =====
+   ************* The following error categories occurred.  Consider correcting or noting.
+   ************* Nominally Unused Constructions
+   ************* ..The nominally unused constructions warning is provided to alert you to potential conditions that can cause
+   ************* ..extra time during simulation. Each construction is calculated by the algorithm indicated in the HeatBalanceAlgorithm
+   ************* ..object. You may remove the constructions indicated (when you use the DisplayExtraWarnings option).
+   *************
+   ************* EnergyPlus Warmup Error Summary. During Warmup: 0 Warning; 0 Severe Errors.
+   ************* EnergyPlus Sizing Error Summary. During Sizing: 8 Warning; 0 Severe Errors.
+   ************* EnergyPlus Completed Successfully-- 15 Warning; 0 Severe Errors; Elapsed Time=00hr 00min 32.58sec

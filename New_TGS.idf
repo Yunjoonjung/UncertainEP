@@ -4,11 +4,11 @@ Version,
     8.8;                      !- Version Identifier
 
 SimulationControl,
-    No,                       !- Do Zone Sizing Calculation
-    No,                       !- Do System Sizing Calculation
-    No,                       !- Do Plant Sizing Calculation
+    Yes,                      !- Do Zone Sizing Calculation
+    Yes,                      !- Do System Sizing Calculation
+    Yes,                      !- Do Plant Sizing Calculation
     No,                       !- Run Simulation for Sizing Periods
-    No;                       !- Run Simulation for Weather File Run Periods
+    Yes;                      !- Run Simulation for Weather File Run Periods
 
 Building,
     Building 1,               !- Name
@@ -39,18 +39,210 @@ Site:Location,
     -5,                       !- Time Zone
     308;                      !- Elevation
 
+SizingPeriod:DesignDay,
+    Atlanta Hartsfield Intl Ap Ann Clg .4% Condns DB=>MWB,    !- Name
+    7,                        !- Month
+    21,                       !- Day of Month
+    SummerDesignDay,          !- Day Type
+    34.4,                     !- Maximum DryBulb Temperature
+    9.5,                      !- Daily DryBulb Temperature Range
+    DefaultMultipliers,       !- DryBulb Temperature Range Modifier Type
+    ,                         !- DryBulb Temperature Range Modifier Day Schedule Name
+    Wetbulb,                  !- Humidity Condition Type
+    23.5,                     !- Wetbulb or DewPoint at Maximum DryBulb
+    ,                         !- Humidity Condition Day Schedule Name
+    ,                         !- Humidity Ratio at Maximum DryBulb
+    ,                         !- Enthalpy at Maximum DryBulb
+    ,                         !- Daily WetBulb Temperature Range
+    97679,                    !- Barometric Pressure
+    4,                        !- Wind Speed
+    300,                      !- Wind Direction
+    No,                       !- Rain Indicator
+    No,                       !- Snow Indicator
+    No,                       !- Daylight Saving Time Indicator
+    ASHRAETau,                !- Solar Model Indicator
+    ,                         !- Beam Solar Day Schedule Name
+    ,                         !- Diffuse Solar Day Schedule Name
+    0.556,                    !- ASHRAE Clear Sky Optical Depth for Beam Irradiance taub
+    1.779;                    !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance taud
+
+SizingPeriod:DesignDay,
+    Atlanta Hartsfield Intl Ap Ann Clg .4% Condns DP=>MDB,    !- Name
+    7,                        !- Month
+    21,                       !- Day of Month
+    SummerDesignDay,          !- Day Type
+    27.3,                     !- Maximum DryBulb Temperature
+    9.5,                      !- Daily DryBulb Temperature Range
+    DefaultMultipliers,       !- DryBulb Temperature Range Modifier Type
+    ,                         !- DryBulb Temperature Range Modifier Day Schedule Name
+    Dewpoint,                 !- Humidity Condition Type
+    23.4,                     !- Wetbulb or DewPoint at Maximum DryBulb
+    ,                         !- Humidity Condition Day Schedule Name
+    ,                         !- Humidity Ratio at Maximum DryBulb
+    ,                         !- Enthalpy at Maximum DryBulb
+    ,                         !- Daily WetBulb Temperature Range
+    97679,                    !- Barometric Pressure
+    4,                        !- Wind Speed
+    300,                      !- Wind Direction
+    No,                       !- Rain Indicator
+    No,                       !- Snow Indicator
+    No,                       !- Daylight Saving Time Indicator
+    ASHRAETau,                !- Solar Model Indicator
+    ,                         !- Beam Solar Day Schedule Name
+    ,                         !- Diffuse Solar Day Schedule Name
+    0.556,                    !- ASHRAE Clear Sky Optical Depth for Beam Irradiance taub
+    1.779;                    !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance taud
+
+SizingPeriod:DesignDay,
+    Atlanta Hartsfield Intl Ap Ann Clg .4% Condns Enth=>MDB,    !- Name
+    7,                        !- Month
+    21,                       !- Day of Month
+    SummerDesignDay,          !- Day Type
+    31.3,                     !- Maximum DryBulb Temperature
+    9.5,                      !- Daily DryBulb Temperature Range
+    DefaultMultipliers,       !- DryBulb Temperature Range Modifier Type
+    ,                         !- DryBulb Temperature Range Modifier Day Schedule Name
+    Enthalpy,                 !- Humidity Condition Type
+    ,                         !- Wetbulb or DewPoint at Maximum DryBulb
+    ,                         !- Humidity Condition Day Schedule Name
+    ,                         !- Humidity Ratio at Maximum DryBulb
+    77900,                    !- Enthalpy at Maximum DryBulb
+    ,                         !- Daily WetBulb Temperature Range
+    97679,                    !- Barometric Pressure
+    4,                        !- Wind Speed
+    300,                      !- Wind Direction
+    No,                       !- Rain Indicator
+    No,                       !- Snow Indicator
+    No,                       !- Daylight Saving Time Indicator
+    ASHRAETau,                !- Solar Model Indicator
+    ,                         !- Beam Solar Day Schedule Name
+    ,                         !- Diffuse Solar Day Schedule Name
+    0.556,                    !- ASHRAE Clear Sky Optical Depth for Beam Irradiance taub
+    1.779;                    !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance taud
+
+SizingPeriod:DesignDay,
+    Atlanta Hartsfield Intl Ap Ann Clg .4% Condns WB=>MDB,    !- Name
+    7,                        !- Month
+    21,                       !- Day of Month
+    SummerDesignDay,          !- Day Type
+    31.2,                     !- Maximum DryBulb Temperature
+    9.5,                      !- Daily DryBulb Temperature Range
+    DefaultMultipliers,       !- DryBulb Temperature Range Modifier Type
+    ,                         !- DryBulb Temperature Range Modifier Day Schedule Name
+    Wetbulb,                  !- Humidity Condition Type
+    25.1,                     !- Wetbulb or DewPoint at Maximum DryBulb
+    ,                         !- Humidity Condition Day Schedule Name
+    ,                         !- Humidity Ratio at Maximum DryBulb
+    ,                         !- Enthalpy at Maximum DryBulb
+    ,                         !- Daily WetBulb Temperature Range
+    97679,                    !- Barometric Pressure
+    4,                        !- Wind Speed
+    300,                      !- Wind Direction
+    No,                       !- Rain Indicator
+    No,                       !- Snow Indicator
+    No,                       !- Daylight Saving Time Indicator
+    ASHRAETau,                !- Solar Model Indicator
+    ,                         !- Beam Solar Day Schedule Name
+    ,                         !- Diffuse Solar Day Schedule Name
+    0.556,                    !- ASHRAE Clear Sky Optical Depth for Beam Irradiance taub
+    1.779;                    !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance taud
+
+SizingPeriod:DesignDay,
+    Atlanta Hartsfield Intl Ap Ann Htg 99.6% Condns DB,    !- Name
+    1,                        !- Month
+    21,                       !- Day of Month
+    WinterDesignDay,          !- Day Type
+    -6.3,                     !- Maximum DryBulb Temperature
+    0,                        !- Daily DryBulb Temperature Range
+    DefaultMultipliers,       !- DryBulb Temperature Range Modifier Type
+    ,                         !- DryBulb Temperature Range Modifier Day Schedule Name
+    Wetbulb,                  !- Humidity Condition Type
+    -6.3,                     !- Wetbulb or DewPoint at Maximum DryBulb
+    ,                         !- Humidity Condition Day Schedule Name
+    ,                         !- Humidity Ratio at Maximum DryBulb
+    ,                         !- Enthalpy at Maximum DryBulb
+    ,                         !- Daily WetBulb Temperature Range
+    97679,                    !- Barometric Pressure
+    5.3,                      !- Wind Speed
+    320,                      !- Wind Direction
+    No,                       !- Rain Indicator
+    No,                       !- Snow Indicator
+    No,                       !- Daylight Saving Time Indicator
+    ASHRAEClearSky,           !- Solar Model Indicator
+    ,                         !- Beam Solar Day Schedule Name
+    ,                         !- Diffuse Solar Day Schedule Name
+    ,                         !- ASHRAE Clear Sky Optical Depth for Beam Irradiance taub
+    ,                         !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance taud
+    0;                        !- Sky Clearness
+
+SizingPeriod:DesignDay,
+    Atlanta Hartsfield Intl Ap Ann Htg Wind 99.6% Condns WS=>MCDB,    !- Name
+    1,                        !- Month
+    21,                       !- Day of Month
+    WinterDesignDay,          !- Day Type
+    3,                        !- Maximum DryBulb Temperature
+    0,                        !- Daily DryBulb Temperature Range
+    DefaultMultipliers,       !- DryBulb Temperature Range Modifier Type
+    ,                         !- DryBulb Temperature Range Modifier Day Schedule Name
+    Wetbulb,                  !- Humidity Condition Type
+    3,                        !- Wetbulb or DewPoint at Maximum DryBulb
+    ,                         !- Humidity Condition Day Schedule Name
+    ,                         !- Humidity Ratio at Maximum DryBulb
+    ,                         !- Enthalpy at Maximum DryBulb
+    ,                         !- Daily WetBulb Temperature Range
+    97679,                    !- Barometric Pressure
+    11.4,                     !- Wind Speed
+    320,                      !- Wind Direction
+    No,                       !- Rain Indicator
+    No,                       !- Snow Indicator
+    No,                       !- Daylight Saving Time Indicator
+    ASHRAEClearSky,           !- Solar Model Indicator
+    ,                         !- Beam Solar Day Schedule Name
+    ,                         !- Diffuse Solar Day Schedule Name
+    ,                         !- ASHRAE Clear Sky Optical Depth for Beam Irradiance taub
+    ,                         !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance taud
+    0;                        !- Sky Clearness
+
+SizingPeriod:DesignDay,
+    Atlanta Hartsfield Intl Ap Ann Hum_n 99.6% Condns DP=>MCDB,    !- Name
+    1,                        !- Month
+    21,                       !- Day of Month
+    WinterDesignDay,          !- Day Type
+    -2.6,                     !- Maximum DryBulb Temperature
+    0,                        !- Daily DryBulb Temperature Range
+    DefaultMultipliers,       !- DryBulb Temperature Range Modifier Type
+    ,                         !- DryBulb Temperature Range Modifier Day Schedule Name
+    Dewpoint,                 !- Humidity Condition Type
+    -15.8,                    !- Wetbulb or DewPoint at Maximum DryBulb
+    ,                         !- Humidity Condition Day Schedule Name
+    ,                         !- Humidity Ratio at Maximum DryBulb
+    ,                         !- Enthalpy at Maximum DryBulb
+    ,                         !- Daily WetBulb Temperature Range
+    97679,                    !- Barometric Pressure
+    5.3,                      !- Wind Speed
+    320,                      !- Wind Direction
+    No,                       !- Rain Indicator
+    No,                       !- Snow Indicator
+    No,                       !- Daylight Saving Time Indicator
+    ASHRAEClearSky,           !- Solar Model Indicator
+    ,                         !- Beam Solar Day Schedule Name
+    ,                         !- Diffuse Solar Day Schedule Name
+    ,                         !- ASHRAE Clear Sky Optical Depth for Beam Irradiance taub
+    ,                         !- ASHRAE Clear Sky Optical Depth for Diffuse Irradiance taud
+    0;                        !- Sky Clearness
+
 RunPeriod,
     Run Period 1,             !- Name
-    1,                        !- Begin Month
+    3,                        !- Begin Month
     1,                        !- Begin Day of Month
-    1,                        !- End Month
-    8,                        !- End Day of Month
+    3,                        !- End Month
+    31,                       !- End Day of Month
     Sunday,                   !- Day of Week for Start Day
     No,                       !- Use Weather File Holidays and Special Days
     No,                       !- Use Weather File Daylight Saving Period
     No,                       !- Apply Weekend Holiday Rule
-    No,                       !- Use Weather File Rain Indicators
-    No,                       !- Use Weather File Snow Indicators
+    Yes,                      !- Use Weather File Rain Indicators
+    Yes,                      !- Use Weather File Snow Indicators
     1;                        !- Number of Times Runperiod to be Repeated
 
 ScheduleTypeLimits,
@@ -7868,7 +8060,7 @@ Material,
     1/2IN Gypsum,             !- Name
     Smooth,                   !- Roughness
     0.0127,                   !- Thickness
-    0.16,                     !- Conductivity
+    0.06640143067472373,      !- Conductivity
     784.9,                    !- Density
     830.000000000001,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -7879,7 +8071,7 @@ Material,
     1/2IN Gypsum 1,           !- Name
     Smooth,                   !- Roughness
     0.0127,                   !- Thickness
-    0.1468241973350748,       !- Conductivity
+    0.06142985632463854,      !- Conductivity
     784.9,                    !- Density
     830.000000000001,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -7890,7 +8082,7 @@ Material,
     1IN Stucco,               !- Name
     Smooth,                   !- Roughness
     0.0253,                   !- Thickness
-    0.17275594062945088,      !- Conductivity
+    4.98666175941679,         !- Conductivity
     1858,                     !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -7901,7 +8093,7 @@ Material,
     1IN Stucco 1,             !- Name
     Smooth,                   !- Roughness
     0.0253,                   !- Thickness
-    0.20326341773954573,      !- Conductivity
+    5.0156286402666534,       !- Conductivity
     1858,                     !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -7912,7 +8104,7 @@ Material,
     8IN Concrete HW,          !- Name
     MediumRough,              !- Roughness
     0.2033,                   !- Thickness
-    0.060458907965943304,     !- Conductivity
+    4.928383317979736,        !- Conductivity
     2242.99999999999,         !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -7923,7 +8115,7 @@ Material,
     8IN Concrete HW 1,        !- Name
     MediumRough,              !- Roughness
     0.2033,                   !- Thickness
-    4.988659173524261,        !- Conductivity
+    4.902398812424864,        !- Conductivity
     2242.99999999999,         !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
