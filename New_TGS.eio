@@ -1,4 +1,4 @@
-Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.08.29 16:49
+Program Version,EnergyPlus, Version 8.8.0-7c3bbe4830, YMD=2019.08.30 11:27
 ! <Version>, Version ID
  Version, 8.8
 ! <Timesteps per Hour>, #TimeSteps, Minutes per TimeStep {minutes}
@@ -291,16 +291,16 @@ Water Cooling Coil Capacity Information,Coil:Cooling:Water,COIL COOLING WATER 6,
 ! <Environment:Special Days>, Special Day Name, Special Day Type, Source, Start Date, Duration {#days}
 ! <Environment:Daylight Saving>, Daylight Saving Indicator, Source, Start Date, End Date
 ! <Environment:WarmupDays>, NumberofWarmupDays
-Environment,RUN PERIOD 1,WeatherFileRunPeriod,03/01,03/31,Sunday,31,Use RunPeriod Specified Day,No,No,No,Yes,Yes
+Environment,RUN PERIOD 1,WeatherFileRunPeriod,03/01,03/10,Sunday,10,Use RunPeriod Specified Day,No,No,No,Yes,Yes
 Environment:Daylight Saving,No,RunPeriod Object
 Environment:WarmupDays,  6
 ! <Warmup Convergence Information>,Zone Name,Environment Type/Name,Average Warmup Temperature Difference {deltaC},Std Dev Warmup Temperature Difference {deltaC},Max Temperature Pass/Fail Convergence,Min Temperature Pass/Fail Convergence,Average Warmup Load Difference {W},Std Dev Warmup Load Difference {W},Heating Load Pass/Fail Convergence,Cooling Load Pass/Fail Convergence
- Warmup Convergence Information,THERMAL ZONE 1 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.4741709503E-002,8.0514869237E-002,Pass,Pass,2.1768423647E-002,0.1089058504,Pass,Pass
- Warmup Convergence Information,THERMAL ZONE 2 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.7507700610E-002,8.7455825628E-002,Pass,Pass,0.2902318491,5.7325471085,Pass,Pass
- Warmup Convergence Information,THERMAL ZONE 3 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.8537019712E-002,4.9150117844E-002,Pass,Pass,7.3424010276E-003,1.5564209490E-002,Pass,Pass
- Warmup Convergence Information,THERMAL ZONE 4 THERMAL ZONE,RunPeriod: RUN PERIOD 1,6.7440487473E-003,3.5949712861E-003,Pass,Pass,1.4167213184E-003,1.6945074715E-003,Pass,Pass
- Warmup Convergence Information,THERMAL ZONE 5 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.6334333564E-002,8.3500896162E-002,Pass,Pass,2.3215359110E-002,0.1006006996,Pass,Pass
- Warmup Convergence Information,THERMAL ZONE 6 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.6499462717E-002,0.1109318460,Pass,Pass,7.5841815540E-002,0.3083335941,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 1 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.5177692818E-002,8.0279799649E-002,Pass,Pass,2.1233282850E-002,0.1050037755,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 2 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.7417150295E-002,8.7202092203E-002,Pass,Pass,7.7496905825E-002,1.1666184019,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 3 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.8556482448E-002,4.9010608826E-002,Pass,Pass,7.4055840556E-003,1.5636083534E-002,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 4 THERMAL ZONE,RunPeriod: RUN PERIOD 1,6.7907533295E-003,3.6245496999E-003,Pass,Pass,1.4235715369E-003,1.8482885635E-003,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 5 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.6333758020E-002,8.3606148453E-002,Pass,Pass,2.7108052956E-002,0.1294194765,Pass,Pass
+ Warmup Convergence Information,THERMAL ZONE 6 THERMAL ZONE,RunPeriod: RUN PERIOD 1,1.6664568372E-002,0.1113809905,Pass,Pass,0.1373180411,1.0322136620,Pass,Pass
 ! <ConductionFiniteDifference Numerical Parameters>, Starting Relaxation Factor, Final Relaxation Factor
 ConductionFiniteDifference Numerical Parameters, 1.000, 1.000
 ! <Program Control Information:Threads/Parallel Sims>, Threading Supported,Maximum Number of Threads, Env Set Threads (OMP_NUM_THREADS), EP Env Set Threads (EP_OMP_NUM_THREADS), IDF Set Threads, Number of Threads Used (Interior Radiant Exchange), Number Nominal Surfaces, Number Parallel Sims

@@ -29,7 +29,7 @@ np.set_printoptions(formatter={'float': '{: 0.2f}'.format})
                     
 class Uncertain_EP(object):
 #-----------------------------------------------------------------------------------------------------------------------------------#     
-    def __init__(self, IDF_FileName, epw_FileName, IDD_FileName, outputFile, climate_uncertainty=False, SA_Graph=True, UA_Graph=True):
+    def __init__(self, IDF_FileName, epw_FileName, IDD_FileName, outputFile, climate_uncertainty=True, SA_Graph=True, UA_Graph=True):
         self.IDF_FileName = IDF_FileName
         self.epw_FileName = epw_FileName
         self.IDD_FileName = IDD_FileName
@@ -72,10 +72,10 @@ class Uncertain_EP(object):
         # Wind propagation
         wind_dist[:,0] = lognorm(0.96, 0.23).ppf(design_lhs_wind[:,0]) # V_met 
         wind_dist[:,1] = triang(c=0.48, loc=0.10, scale=0.25).ppf(design_lhs_wind[:,1]) # alpha 
-        wind_dist[:,2] = triang(c=8, loc=210, scale=200).ppf(design_lhs_wind[:,2]) # delta
+        wind_dist[:,2] = triang(c=0.8, loc=210, scale=200).ppf(design_lhs_wind[:,2]) # delta
         wind_dist[:,3] = triang(c=0.16, loc=0.10, scale=0.25).ppf(design_lhs_wind[:,3]) # alpha_met
         wind_dist[:,4] = triang(c=0.3, loc=210, scale=200).ppf(design_lhs_wind[:,4]) # delta_met
-                                 
+              
         # Temperature Uncertainty Propagation
         L = -0.0065
         H_b = 0
@@ -84,12 +84,14 @@ class Uncertain_EP(object):
         z = 8
         z_met = 3
         for i in range(8760):
-            self.propagated_EPW[i,0] = (self.original_EPW[i,0] - L*( (E_met/(6356+z_met) - H_b)) + L*( (E/ (E+z) - H_b))) + temp_dist[i,0]
+##            self.propagated_EPW[i,0] = (self.original_EPW[i,0] - L*( (E_met/(6356+z_met) - H_b)) + L*( (E/ (E+z) - H_b))) + temp_dist[i,0]
+            self.propagated_EPW[i,0] = (self.original_EPW[i,0] - L*( (E_met/(6356+z_met) - H_b)) + L*( (E/ (E+z) - H_b)))
 
         # Wind Uncertainty Propagation
         z_met = 10
         for i in range(8760):
-            self.propagated_EPW[i,0] = (self.original_EPW[i,1] * ((wind_dist[i,4]/z_met)**wind_dist[:,3]) * ((z/wind_dist[:,2])**wind_dist[:,1])) + wind_dist[i,0]
+##            self.propagated_EPW[i,1] = (self.original_EPW[i,1] * ((wind_dist[i,4]/z_met)**wind_dist[i,3]) * ((z/wind_dist[i,2])**wind_dist[i,1])) + wind_dist[i,0]
+            self.propagated_EPW[i,1] = (self.original_EPW[i,1] * ((wind_dist[i,4]/z_met)**wind_dist[i,3]) * ((z/wind_dist[i,2])**wind_dist[i,1])) 
 
         # Open .epw file
         epw = EPW()
@@ -101,8 +103,8 @@ class Uncertain_EP(object):
             wd.wind_speed = self.propagated_EPW[i,1]
             
         # Close EPW file
-        self.new_file_name = "Climate_Uncertainty_Propagated_TMY.epw"
-        epw.save(new_file_name)
+##        self.new_file_name = "Climate_Uncertainty_Propagated_TMY.epw"
+        epw.save("Climate_Uncertainty_Propagated_TMY.epw")
 
 
 #-----------------------------------------------------------------------------------------------------------------------------------#     
@@ -337,8 +339,9 @@ class Uncertain_EP(object):
             # Scenario Uncertainty Propagation
             if self.climate_uncertainty == True:
                 self.EPW_Uncertainty_Propagation()
+                temporary_weather_file_name = r"Climate_Uncertainty_Propagated_TMY.epw"
             
-                idf = IDF(self.IDF_FileName, self.new_file_name)
+                idf = IDF(self.IDF_FileName,temporary_weather_file_name)
                 witheppy.runner.eplaunch_run(idf)
             else:
                 idf = IDF(self.IDF_FileName, self.epw_FileName)
@@ -2267,7 +2270,7 @@ class Uncertain_EP(object):
                         instance_idf.idfobjects['Coil_Heating_DX_SingleSpeed'][obj_num].Rated_Air_Flow_Rate = X[loop_count]
                         loop_count += 1
              
-            #----------------------------------------------------------------------------------------------------------------------------------------------------#
+            #-----------------------------------------------------------------------------------------------------------------------------------------------------#
             if only_idf_instances_generation == True: # Only Quantification and save-as idf instances case
                 idf_instance_name = "idf_instance_" + str(j+1)
                 print(idf_instance_name+" was generated.")
@@ -2281,8 +2284,9 @@ class Uncertain_EP(object):
                 # Scenario Uncertainty Propagation
                 if self.climate_uncertainty == True:
                     self.EPW_Uncertainty_Propagation()
+                    temporary_weather_file_name =  r"Climate_Uncertainty_Propagated_TMY.epw"
             
-                    idf = IDF(self.IDF_FileName, self.new_file_name)
+                    idf = IDF(self.IDF_FileName,temporary_weather_file_name)
                     witheppy.runner.eplaunch_run(idf)
                 else:   
                     idf = IDF(self.IDF_FileName, self.epw_FileName)
@@ -2314,9 +2318,3 @@ class Uncertain_EP(object):
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
         
-# Execution
-##testing = Uncertain_EP('C:\\Users\\YunJoon Jung\\Dropbox (GaTech)\\Uncertain_EP\\New_TGS.idf', 'C:\\Users\\YunJoon Jung\\Dropbox (GaTech)\\Uncertain_EP\\Atlanta2.epw',
-##                       'C:\\Users\\YunJoon Jung\\Dropbox (GaTech)\\Uncertain_EP\\Energy+.idd', 'New_TGSTable.htm')
-##
-####testing.SA(number_of_SA_samples=22)
-##testing.UA(number_of_UA_samples=10, only_idf_instances_generation=False)

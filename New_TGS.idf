@@ -236,7 +236,7 @@ RunPeriod,
     3,                        !- Begin Month
     1,                        !- Begin Day of Month
     3,                        !- End Month
-    31,                       !- End Day of Month
+    10,                       !- End Day of Month
     Sunday,                   !- Day of Week for Start Day
     No,                       !- Use Weather File Holidays and Special Days
     No,                       !- Use Weather File Daylight Saving Period
@@ -8060,7 +8060,7 @@ Material,
     1/2IN Gypsum,             !- Name
     Smooth,                   !- Roughness
     0.0127,                   !- Thickness
-    0.06640143067472373,      !- Conductivity
+    0.04513562465365808,      !- Conductivity
     784.9,                    !- Density
     830.000000000001,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -8071,7 +8071,7 @@ Material,
     1/2IN Gypsum 1,           !- Name
     Smooth,                   !- Roughness
     0.0127,                   !- Thickness
-    0.06142985632463854,      !- Conductivity
+    0.05608035409878433,      !- Conductivity
     784.9,                    !- Density
     830.000000000001,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -8082,7 +8082,7 @@ Material,
     1IN Stucco,               !- Name
     Smooth,                   !- Roughness
     0.0253,                   !- Thickness
-    4.98666175941679,         !- Conductivity
+    5.081284531845832,        !- Conductivity
     1858,                     !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -8093,7 +8093,7 @@ Material,
     1IN Stucco 1,             !- Name
     Smooth,                   !- Roughness
     0.0253,                   !- Thickness
-    5.0156286402666534,       !- Conductivity
+    5.0489786992486945,       !- Conductivity
     1858,                     !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -8104,7 +8104,7 @@ Material,
     8IN Concrete HW,          !- Name
     MediumRough,              !- Roughness
     0.2033,                   !- Thickness
-    4.928383317979736,        !- Conductivity
+    5.017208792379622,        !- Conductivity
     2242.99999999999,         !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -8115,7 +8115,7 @@ Material,
     8IN Concrete HW 1,        !- Name
     MediumRough,              !- Roughness
     0.2033,                   !- Thickness
-    4.902398812424864,        !- Conductivity
+    5.024355581523421,        !- Conductivity
     2242.99999999999,         !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
