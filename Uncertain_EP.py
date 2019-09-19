@@ -123,9 +123,9 @@ class Uncertain_EP(object):
             
             loop_count = 0
             for i in range(self.number_of_parameter_uncertain_parameters):
-                obj_num = int(uncertain_input_sheet.cell(row=i+2, column=4).value[3]) # int type
+                obj_num = int(uncertain_input_sheet.cell(row=i+2, column=4).value[3])-1 # int type
                 
-                if uncertain_input_sheet.cell(row=2, column=2).value == "Material":
+                if uncertain_input_sheet.cell(row=i+2, column=2).value == "Material":
                     if uncertain_input_sheet.cell(row=i+2, column=3).value == "Conductivity":
                         instance_idf.idfobjects['Material'][obj_num].Conductivity = X[loop_count]
                         loop_count += 1
@@ -1848,7 +1848,7 @@ class Uncertain_EP(object):
 
         # Call the "Uncertain_Quantification" method to quantify uncertain parameters
         quantified_repository, name_repository = self.Uncertain_Quantification()
-        self.UA_output_result_repository = np.zeros([quantified_repository.shape[0]]) # Fior visualization
+        self.UA_output_result_repository = np.zeros([quantified_repository.shape[0]]) # For visualization
           
         # ASSIGN the quantified values into idf and epw
         for j, X in enumerate(self.distribution_repository):
@@ -2061,215 +2061,8 @@ class Uncertain_EP(object):
 
                     elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Rated_Air_Flow_Rate":
                         instance_idf.idfobjects['Coil_Heating_DX_SingleSpeed'][obj_num].Rated_Air_Flow_Rate = X[loop_count]
-                        loop_count += 1      
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Thickness":
-                        instance_idf.idfobjects['Material'][obj_num].Thickness = X[loop_count]
                         loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Density":
-                        instance_idf.idfobjects['Material'][obj_num].Density = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Specific_Heat":
-                        instance_idf.idfobjects['Material'][obj_num].Specific_Heat = X[loop_count]
-                        loop_count += 1
-
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "WindowMaterial_SimpleGlazingSystem":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "UFactor":
-                        instance_idf.idfobjects['WindowMaterial_SimpleGlazingSystem'][obj_num].UFactor = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Solar_heat_Gain_Coefficient":
-                        instance_idf.idfobjects['WindowMaterial_SimpleGlazingSystem'][obj_num].Solar_heat_Gain_Coefficient = X[loop_count]
-                        loop_count += 1
-                        
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "People":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "People_per_Zone_Floor_Area":
-                        instance_idf.idfobjects['People'][obj_num].People_per_Zone_Floor_Area = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Zone_Floor_Area_per_Person":
-                        instance_idf.idfobjects['People'][obj_num].Zone_Floor_Area_per_Person = X[loop_count]
-                        loop_count += 1
-                        
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "Lights":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "Lighting_Level":
-                        instance_idf.idfobjects['Lights'][obj_num].Lighting_Level = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Watts_per_Zone_Floor_Area":
-                        instance_idf.idfobjects['Lights'][obj_num].Watts_per_Zone_Floor_Area = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Watts_per_Person":
-                        instance_idf.idfobjects[''][obj_num].Watts_per_Person = X[loop_count]
-                        loop_count += 1
-
-
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "ElectricEquipment":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "Design_Level":
-                        instance_idf.idfobjects['ElectricEquipment'][obj_num].Design_Level = X[loop_count]
-                        loop_count += 1
-                    
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Watts_per_Zone_Floor_Area":
-                        instance_idf.idfobjects['ElectricEquipment'][obj_num].Watts_per_Zone_Floor_Area = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Watts_per_Person":
-                        instance_idf.idfobjects['ElectricEquipment'][obj_num].Watts_per_Person = X[loop_count]
-                        loop_count += 1
-
-
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "ZoneInfiltration_DesignFlowRate":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "Design_Flow_Rate":
-                        instance_idf.idfobjects['ZoneInfiltration_DesignFlowRate'][obj_num].Design_Flow_Rate = X[loop_count]
-                        loop_count += 1
-                    
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Flow_per_Zone_Floor_Area":
-                        instance_idf.idfobjects['ZoneInfiltration_DesignFlowRate'][obj_num].Flow_per_Zone_Floor_Area = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Flow_per_Exterior_Surface_Area":
-                        instance_idf.idfobjects['ZoneInfiltration_DesignFlowRate'][obj_num].Flow_per_Exterior_Surface_Area = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Air_Changes_per_Hour":
-                        instance_idf.idfobjects['ZoneInfiltration_DesignFlowRate'][obj_num].Air_Changes_per_Hour = X[loop_count]
-                        loop_count += 1
-
-
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "Effective_Leakage_Area":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Effective_Leakage_Area = X[loop_count]
-                        loop_count += 1
-                    
-
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "AirflowNetwork_MultiZone_WindPressureCoefficientValues":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_1":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_1 = X[loop_count]
-                        loop_count += 1
-                    
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_2":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_2= X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_3":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_3 = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_4":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_4 = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_5":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_5 = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_6":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_6 = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_7":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_7 = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_8":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_8 = X[loop_count]   
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_9":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_9 = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_10":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_10 = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_11":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_11 = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_12":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_12 = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Wind_Pressure_Coefficient_Value_13":
-                        instance_idf.idfobjects['AirflowNetwork_MultiZone_Surface_EffectiveLeakageArea'][obj_num].Wind_Pressure_Coefficient_Value_13 = X[loop_count]
-                        loop_count += 1
-             
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "Fan_VariableVolume":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "Fan_Total_Efficiency":
-                        instance_idf.idfobjects['Fan_VariableVolume'][obj_num].Fan_Total_Efficiency = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Pressure_Rise":
-                        instance_idf.idfobjects['Fan_VariableVolume'][obj_num].Pressure_Rise = X[loop_count]
-                        loop_count += 1
-
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "Coil_Cooling_DX_SingleSpeed":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "Gross_Rated_Total_Cooling_Capacity":
-                        instance_idf.idfobjects['Coil_Cooling_DX_SingleSpeed'][obj_num].Gross_Rated_Total_Cooling_Capacity = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Gross_Rated_Sensible_Heat_Ratio":
-                        instance_idf.idfobjects['Coil_Cooling_DX_SingleSpeed'][obj_num].Gross_Rated_Sensible_Heat_Ratio = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Gross_Rated_Cooling_COP":
-                        instance_idf.idfobjects['Coil_Cooling_DX_SingleSpeed'][obj_num].Gross_Rated_Cooling_COP = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Rated_Air_Flow_Rate":
-                        instance_idf.idfobjects['Coil_Cooling_DX_SingleSpeed'][obj_num].Rated_Air_Flow_Rate = X[loop_count]
-                        loop_count += 1
-                        
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "Coil_Cooling_DX_TwoSpeed":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "High_Speed_Gross_Rated_Total_Cooling_Capacity":
-                        instance_idf.idfobjects['Coil_Cooling_DX_TwoSpeed'][obj_num].High_Speed_Gross_Rated_Total_Cooling_Capacity = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "High_Speed_Rated_Sensible_Heat_Ratio":
-                        instance_idf.idfobjects['Coil_Cooling_DX_TwoSpeed'][obj_num].High_Speed_Rated_Sensible_Heat_Ratio = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "High_Speed_Gross_Rated_Cooling_COP":
-                        instance_idf.idfobjects['Coil_Cooling_DX_TwoSpeed'][obj_num].High_Speed_Gross_Rated_Cooling_COP = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "High_Speed_Rated_Air_Flow_Rate":
-                        instance_idf.idfobjects['Coil_Cooling_DX_TwoSpeed'][obj_num].High_Speed_Rated_Air_Flow_Rate = X[loop_count]
-                        loop_count += 1
-                    
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "CoilPerformance_DX_Cooling":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "Gross_Rated_Total_Cooling_Capacity":
-                        instance_idf.idfobjects['CoilPerformance_DX_Cooling'][obj_num].Gross_Rated_Total_Cooling_Capacity = X[loop_count]
-                        loop_count += 1
-                    
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Gross_Rated_Sensible_Heat_Ratio":
-                        instance_idf.idfobjects['CoilPerformance_DX_Cooling'][obj_num].Gross_Rated_Sensible_Heat_Ratio = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Gross_Rated_Cooling_COP":
-                        instance_idf.idfobjects['CoilPerformance_DX_Cooling'][obj_num].Gross_Rated_Cooling_COP = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Rated_Air_Flow_Rate":
-                        instance_idf.idfobjects['CoilPerformance_DX_Cooling'][obj_num].Rated_Air_Flow_Rate = X[loop_count]
-                        loop_count += 1
-
-                elif uncertain_input_sheet.cell(row=i+2, column=2).value == "Coil_Heating_DX_SingleSpeed":
-                    if uncertain_input_sheet.cell(row=i+2, column=3).value == "Gross_Rated_Heating_Capacity":
-                        instance_idf.idfobjects['Coil_Heating_DX_SingleSpeed'][obj_num].Gross_Rated_Heating_Capacity = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Gross_Rated_Heating_COP":
-                        instance_idf.idfobjects['Coil_Heating_DX_SingleSpeed'][obj_num].Gross_Rated_Heating_COP = X[loop_count]
-                        loop_count += 1
-
-                    elif uncertain_input_sheet.cell(row=i+2, column=3).value == "Rated_Air_Flow_Rate":
-                        instance_idf.idfobjects['Coil_Heating_DX_SingleSpeed'][obj_num].Rated_Air_Flow_Rate = X[loop_count]
-                        loop_count += 1
-             
+            
             #-----------------------------------------------------------------------------------------------------------------------------------------------------#
             if only_idf_instances_generation == True: # Only Quantification and save-as idf instances case
                 idf_instance_name = "idf_instance_" + str(j+1)

@@ -8060,7 +8060,7 @@ Material,
     1/2IN Gypsum,             !- Name
     Smooth,                   !- Roughness
     0.0127,                   !- Thickness
-    0.04513562465365808,      !- Conductivity
+    0.04519411833999339,      !- Conductivity
     784.9,                    !- Density
     830.000000000001,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -8082,7 +8082,7 @@ Material,
     1IN Stucco,               !- Name
     Smooth,                   !- Roughness
     0.0253,                   !- Thickness
-    5.081284531845832,        !- Conductivity
+    5.000261993882361,        !- Conductivity
     1858,                     !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
@@ -8104,7 +8104,7 @@ Material,
     8IN Concrete HW,          !- Name
     MediumRough,              !- Roughness
     0.2033,                   !- Thickness
-    5.017208792379622,        !- Conductivity
+    5.118152478088745,        !- Conductivity
     2242.99999999999,         !- Density
     836.999999999999,         !- Specific Heat
     0.9,                      !- Thermal Absorptance
