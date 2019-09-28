@@ -106,7 +106,6 @@ class Uncertain_EP(object):
 ##        self.new_file_name = "Climate_Uncertainty_Propagated_TMY.epw"
         epw.save("Climate_Uncertainty_Propagated_TMY.epw")
 
-
 #-----------------------------------------------------------------------------------------------------------------------------------#     
     def EP_iteration(self, SA_quantified_matrix):  # This is used only for sensitivity analysis
         SA_result_compilation  = np.zeros([SA_quantified_matrix.shape[0]])
@@ -358,11 +357,14 @@ class Uncertain_EP(object):
 ##                pp.pprint(firstitem)
 ##                print(firstitem[1][1][1])
             total_site_energy = firstitem[1][1][1]
+            print(total_site_energy)
 ##                pp.pprint(seconditem)
             total_conditioned_area = seconditem[1][2][1]
+            print(total_conditioned_area)
 
             
             total_site_energy = (firstitem[1][1][1])*277.778/total_conditioned_area
+            print(total_site_energy)
             SA_result_compilation[j] = total_site_energy
         
         uncertain_input.save('Uncertain_EP_Input.xlsx') # close Excel
