@@ -3,10 +3,7 @@ import openpyxl
 
 from pyDOE import lhs
 
-from scipy.stats import norm 
-from scipy.stats import uniform 
-from scipy.stats import triang
-from scipy.stats import lognorm
+from scipy.stats import norm, uniform, triang, lognorm
 
 from pyepw.epw import EPW
 
@@ -52,60 +49,6 @@ class Uncertain_EP(object):
         # Close EPW file
         epw.save(self.epw_FileName)
         
-#-----------------------------------------------------------------------------------------------------------------------------------#     
-    def EPW_Uncertainty_Propagation(self):
-        # if climate uncertainty propagation is needed, this method is executed.
-
-        # Propagated Uncertain Values
-        self.propagated_EPW = np.zeros((8760,2)) # 0th: dry_bulb_temperature, 1st: wind_speed
-
-        # Unceratinty propagation
-        design_lhs_temp = lhs(1, samples=8760) # 0th: V_met, 1st: alpha, 2nd: delta, 3rd: alpha_met, 4th: delta_met
-        design_lhs_wind = lhs(5, samples=8760) # 0th: T_met
-
-        temp_dist = np.zeros((8760, 1))
-        wind_dist = np.zeros((8760, 5))
-
-        # Temperature propagation
-        temp_dist[:,0] = norm(loc=18, scale=3.4).ppf(design_lhs_temp[:,0]) # T_met
-    
-        # Wind propagation
-        wind_dist[:,0] = lognorm(0.96, 0.23).ppf(design_lhs_wind[:,0]) # V_met 
-        wind_dist[:,1] = triang(c=0.48, loc=0.10, scale=0.25).ppf(design_lhs_wind[:,1]) # alpha 
-        wind_dist[:,2] = triang(c=0.8, loc=210, scale=200).ppf(design_lhs_wind[:,2]) # delta
-        wind_dist[:,3] = triang(c=0.16, loc=0.10, scale=0.25).ppf(design_lhs_wind[:,3]) # alpha_met
-        wind_dist[:,4] = triang(c=0.3, loc=210, scale=200).ppf(design_lhs_wind[:,4]) # delta_met
-              
-        # Temperature Uncertainty Propagation
-        L = -0.0065
-        H_b = 0
-        E = 6356
-        E_met = 6356.3
-        z = 8
-        z_met = 3
-        for i in range(8760):
-##            self.propagated_EPW[i,0] = (self.original_EPW[i,0] - L*( (E_met/(6356+z_met) - H_b)) + L*( (E/ (E+z) - H_b))) + temp_dist[i,0]
-            self.propagated_EPW[i,0] = (self.original_EPW[i,0] - L*( (E_met/(6356+z_met) - H_b)) + L*( (E/ (E+z) - H_b)))
-
-        # Wind Uncertainty Propagation
-        z_met = 10
-        for i in range(8760):
-##            self.propagated_EPW[i,1] = (self.original_EPW[i,1] * ((wind_dist[i,4]/z_met)**wind_dist[i,3]) * ((z/wind_dist[i,2])**wind_dist[i,1])) + wind_dist[i,0]
-            self.propagated_EPW[i,1] = (self.original_EPW[i,1] * ((wind_dist[i,4]/z_met)**wind_dist[i,3]) * ((z/wind_dist[i,2])**wind_dist[i,1])) 
-
-        # Open .epw file
-        epw = EPW()
-        epw.read(self.epw_FileName)
-        
-        # Assign Propagated values in the .epw file
-        for i, wd in enumerate(epw.weatherdata):
-            wd.dry_bulb_temperature = self.propagated_EPW[i,0]
-            wd.wind_speed = self.propagated_EPW[i,1]
-            
-        # Close EPW file
-##        self.new_file_name = "Climate_Uncertainty_Propagated_TMY.epw"
-        epw.save("Climate_Uncertainty_Propagated_TMY.epw")
-
 #-----------------------------------------------------------------------------------------------------------------------------------#     
     def EP_iteration(self, SA_quantified_matrix):  # This is used only for sensitivity analysis
         SA_result_compilation  = np.zeros([SA_quantified_matrix.shape[0]])
