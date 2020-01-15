@@ -34,21 +34,7 @@ class Uncertain_EP(object):
         self.climate_uncertainty = climate_uncertainty
         self.SA_Graph = SA_Graph
         self.UA_Graph = UA_Graph
-
-        # Open .epw file
-        epw = EPW()
-        epw.read(self.epw_FileName)
-
-        # Save original dry_bulb_temperature and wind_speed
-        self.original_EPW = np.zeros((8760,2)) # 0th: dry_bulb_temperature, 1st: wind_speed
-
-        for i, wd in enumerate(epw.weatherdata):
-            self.original_EPW[i,0] = wd.dry_bulb_temperature
-            self.original_EPW[i,1] = wd.wind_speed
-
-        # Close EPW file
-        epw.save(self.epw_FileName)
-        
+       
 #-----------------------------------------------------------------------------------------------------------------------------------#     
     def EP_iteration(self, SA_quantified_matrix):  # This is used only for sensitivity analysis
         SA_result_compilation  = np.zeros([SA_quantified_matrix.shape[0]])
