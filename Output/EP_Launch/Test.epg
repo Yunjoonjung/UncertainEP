@@ -1,0 +1,14 @@
+! EnergyPlus Group File
+! ------------------------------------------------------------------------------------------------
+! Each line represents a specific simulation. If you don't want a simulation to run, add a comment
+! character (an exclamation point) to the beginning of that line. Commas are used to separate the 
+! fields. Each line consists of the following fields: 
+!
+!    input file name, weather file name, output file name (no extension), counter
+!
+! ------------------------------------------------------------------------------------------------
+C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Output\EP_Launch\idf_instance_1.idf,C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Atlanta2018.epw,C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Output\EP_Launch\idf_instance_1,      1 
+C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Output\EP_Launch\idf_instance_2.idf,C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Atlanta2018.epw,C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Output\EP_Launch\idf_instance_2,      1 
+C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Output\EP_Launch\idf_instance_3.idf,C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Atlanta2018.epw,C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Output\EP_Launch\idf_instance_3,      1 
+C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Output\EP_Launch\idf_instance_4.idf,C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Atlanta2018.epw,C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Output\EP_Launch\idf_instance_4,      1 
+C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Output\EP_Launch\idf_instance_5.idf,C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Atlanta2018.epw,C:\Users\YunJoon Jung\Dropbox (GaTech)\Uncertain_EP\Mohanned\Output\EP_Launch\idf_instance_5,      1 
