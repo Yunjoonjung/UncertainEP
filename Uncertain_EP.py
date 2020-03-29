@@ -56,7 +56,6 @@ class Uncertain_EP(object):
             # Close EPW file
             epw.save(self.epw_FileName)
 
-
 #-----------------------------------------------------------------------------------------------------------------------------------#     
     def EPW_Uncertainty_Propagation(self):
         # if climate uncertainty propagation is needed, this method is executed.
@@ -853,7 +852,7 @@ class Uncertain_EP(object):
                 
 #-----------#-------------------------------------------------------------------------------------------------------------------------#        
             # 2. UNIFORM Relative Distribution 
-            elif uncertain_input_sheet.cell(row=i+2, column=5).value == "UniformRelative":                
+            elif uncertain_input_sheet.cell(row=i+2, column=5).value == "UniformRelative" or uncertain_input_sheet.cell(row=i+2, column=5).value == "UniformAbsolute":                
                 if replace_to_EnergyPlus_format == 'Material':
                     if field_name == 'Conductivity':
                         value_in_idf = class_in_idf_instance.Conductivity
@@ -1675,235 +1674,7 @@ class Uncertain_EP(object):
                         self.distribution_repository[:, i] = norm(loc=uncertain_input_sheet.cell(row=i + 2, column=6).value, scale=uncertain_input_sheet.cell(row=i + 2, column=7).value).ppf(design_lhs[:, i])
 
             #-----------#-------------------------------------------------------------------------------------------------------------------------#
-            # 5. Uniform Absolute Distribution
-            elif uncertain_input_sheet.cell(row=i+2, column=5).value == "UniformAbsolute":                
-                if replace_to_EnergyPlus_format == 'Material':
-                    if field_name == 'Conductivity':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-                        
-                    elif field_name == 'Thickness':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Density':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Specific_Heat':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'WindowMaterial:SimpleGlazingSystem':
-                    if field_name == 'UFactor':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Solar_heat_Gain_Coefficient':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'WindowMaterial:Glazing':
-                    if field_name == 'Solar_Transmittance_at_Normal_Incidence':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Conductivity':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'People':
-                    if field_name == 'People_per_Zone_Floor_Area':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Zone_Floor_Area_per_Person':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Number_of_People':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'Lights':
-                    if field_name == 'Lighting_Level':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Watts_per_Zone_Floor_Area':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Watts_per_Person':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'ElectricEquipment':
-                    if field_name == 'Design_Level':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Watts_per_Zone_Floor_Area':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Watts_per_Person':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'Schedule:Day:Interval':
-                    if field_name == 'Value_Until_Time_1':
-                        self.distribution_repository[:, i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Value_Until_Time_2':
-                        self.distribution_repository[:, i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Value_Until_Time_3':
-                        self.distribution_repository[:, i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Value_Until_Time_4':
-                        self.distribution_repository[:, i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Value_Until_Time_5':
-                        self.distribution_repository[:, i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'ZoneInfiltration:DesignFlowRate':
-                    if field_name == 'Design_Flow_Rate':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Flow_per_Zone_Floor_Area':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Flow_per_Exterior_Surface_Area':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Air_Changes_per_Hour':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-                
-                elif replace_to_EnergyPlus_format == 'DesignSpecification:OutdoorAir':
-                    if field_name == 'Outdoor_Air_Flow_per_Person':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Outdoor_Air_Flow_per_Zone_Floor_Area':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Outdoor_Air_Flow_per_Zone':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Outdoor_Air_Flow_Air_Changes_per_Hour':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'AirflowNetwork:MultiZone:Surface:EffectiveLeakageArea':
-                    if field_name == 'Effective_Leakage_Area':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'AirflowNetwork:MultiZone:WindPressureCoefficientValues':
-                    if field_name == 'Wind_Pressure_Coefficient_Value_1':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_2':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_3':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_4':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_5':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_6':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_7':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_8':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_9':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_10':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_11':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_12':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Wind_Pressure_Coefficient_Value_13':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'Fan:ConstantVolume':
-                    if field_name == 'Pressure_Rise':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Maximum_Flow_Rate':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Fan_Total_Efficiency':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'Fan:VariableVolume':
-                    if field_name == 'Fan_Total_Efficiency':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Pressure_Rise':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'Coil:Cooling:DX:SingleSpeed':
-                    if field_name == 'Gross_Rated_Total_Cooling_Capacity':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Gross_Rated_Sensible_Heat_Ratio':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Gross_Rated_Cooling_COP':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Rated_Air_Flow_Rate':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-                                       
-                elif replace_to_EnergyPlus_format == 'Coil:Cooling:DX:TwoSpeed':
-                    if field_name == 'High_Speed_Gross_Rated_Total_Cooling_Capacity':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'High_Speed_Rated_Sensible_Heat_Ratio':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'High_Speed_Gross_Rated_Cooling_COP':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'High_Speed_Rated_Air_Flow_Rate':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'CoilPerformance:DX:Cooling':
-                    if field_name == 'Gross_Rated_Total_Cooling_Capacity':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Gross_Rated_Sensible_Heat_Ratio':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Gross_Rated_Cooling_COP':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Rated_Air_Flow_Rate':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'Coil:Heating:DX:SingleSpeed':
-                    if field_name == 'Gross_Rated_Heating_Capacity':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Gross_Rated_Heating_COP':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                    elif field_name == 'Rated_Air_Flow_Rate':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'Site:WeatherStation':
-                    if field_name == 'Wind_Speed_Profile_Boundary_Layer_Thickness':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'Chiller:Electric:EIR':
-                    if field_name == 'Reference_COP':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'Coil:Heating:Electric':
-                    if field_name == 'Efficiency':
-                        self.distribution_repository[:,i] = uniform(loc=uncertain_input_sheet.cell(row=i+2, column=6).value, scale=uncertain_input_sheet.cell(row=i+2, column=7).value).ppf(design_lhs[:,i])
-
-                elif replace_to_EnergyPlus_format == 'Coil:Heating:Fuel':
-                    if field_name == 'Burner_Efficiency':
-                        self.distribution_repository[:, i] = uniform(loc=uncertain_input_sheet.cell(row=i + 2, column=6).value, scale=uncertain_input_sheet.cell(row=i + 2, column=7).value).ppf(design_lhs[:, i])
-
-            #-----------#-------------------------------------------------------------------------------------------------------------------------#
-            # 6. Triangle Absolute Distribution
+            # 5. Triangle Absolute Distribution
             elif uncertain_input_sheet.cell(row=i+2, column=5).value == "TriangleAbsolute":                
                 if replace_to_EnergyPlus_format == 'Material':
                     if field_name == 'Conductivity':
@@ -2132,7 +1903,7 @@ class Uncertain_EP(object):
 
 
             #-----------#-------------------------------------------------------------------------------------------------------------------------#
-            # 7. LogNormal Relative Distribution
+            # 6. LogNormal Relative Distribution
             elif uncertain_input_sheet.cell(row=i+2, column=5).value == "LogNormalRelative":
                 if replace_to_EnergyPlus_format == 'Material':
                     if field_name == 'Conductivity':
@@ -2428,8 +2199,7 @@ class Uncertain_EP(object):
                         self.distribution_repository[:, i] = lognorm(uncertain_input_sheet.cell(row=i + 2, column=6).value, value_in_idf).ppf(design_lhs[:, i])
 
 #-----------------------------------------------------------------------------------------------------------------------------------------------------#
-
-            # 8. LogNormal Absolute Distribution
+            # 7. LogNormal Absolute Distribution
             elif uncertain_input_sheet.cell(row=i+2, column=5).value == "LogNormalAbsolute":
                 if replace_to_EnergyPlus_format == 'Material':
                     if field_name == 'Conductivity':
